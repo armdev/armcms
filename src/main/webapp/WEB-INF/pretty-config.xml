@@ -1,0 +1,40 @@
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.0" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
+                                		http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
+  
+  
+    <url-mapping id="view-news">
+        <pattern value="/fullnews/#{next : fullNewsBean.articleEntity.id }/#{ slug : fullNewsBean.articleEntity.slug }"/>
+        <view-id value="/site/news.jsf"/>         
+    </url-mapping> 
+    <url-mapping id="view-category">
+        <pattern value="/category/#{categoryId : CategoryTopBean.topNews.categoryId }/#{ name : CategoryTopBean.topNews.categoryName }"/>
+        <view-id value="/site/category.jsf"/>         
+    </url-mapping> 
+    <url-mapping id="view-videopage">
+        <pattern value="/video/news"/>
+        <view-id value="/site/video.jsf"/>         
+    </url-mapping> 
+    <url-mapping id="view-showvideo">
+        <pattern value="/video/#{videoId : showVideoBean.entity.id }/#{videoslug : showVideoBean.entity.slug}"/>
+        <view-id value="/site/showvideo.jsf"/>         
+    </url-mapping>
+    <url-mapping id="view-photopage">
+        <pattern value="/gallery/news"/>
+        <view-id value="/site/photonews.jsf"/>         
+    </url-mapping>
+    <url-mapping id="view-showphoto">
+        <pattern value="/gallery/#{id : ShowGalleryBean.entity.id }/#{slug : ShowGalleryBean.entity.slug}"/>
+        <view-id value="/site/showgallery.jsf"/>         
+    </url-mapping>
+     <url-mapping id="view-page">
+        <pattern value="/pages/#{next : StaticPagesViewBean.entity.id }/#{ title : StaticPagesViewBean.entity.title }"/>
+        <view-id value="/site/showpage.jsf"/>         
+    </url-mapping> 
+    <url-mapping id="view-rss-feed">
+        <pattern value="/rss"/>
+        <view-id value="/rss.jsf"/>         
+    </url-mapping>
+
+</pretty-config>

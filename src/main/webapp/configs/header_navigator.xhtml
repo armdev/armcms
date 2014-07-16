@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"    
+      xmlns:t="http://myfaces.apache.org/tomahawk">   
+
+    <ui:composition>       
+        <h:form>
+            <p:accordionPanel activeIndex="0">              
+                <p:tab title="#{i18n.siteheaders}">                  
+                    <h:outputLink  value="#{request.contextPath}/configs/addheader.jsf">
+                        <h:outputText value="#{i18n.addheader}"/>
+                    </h:outputLink>          
+                    <br/>
+                    <h:outputLink  value="#{request.contextPath}/configs/headers.jsf">
+                        <h:outputText value="#{i18n.headerlist}"/>
+                    </h:outputLink>  
+                    <br/>
+                    <h:outputLink  value="#{request.contextPath}/panel/cpanel.jsf">
+                        <h:outputText value="#{i18n.toadmin}"/>
+                    </h:outputLink>
+                </p:tab>                         
+            </p:accordionPanel>
+        </h:form>
+    </ui:composition>    
+</html>

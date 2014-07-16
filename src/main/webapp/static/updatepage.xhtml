@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>#{i18n.makepage}</title>
+            <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="/panel/menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">                  
+                    <h:form id="update_page" styleClass="form-horizontal">
+                        <fieldset>
+                            <div class="legend">  
+                                <legend class=""><h:outputText  value="#{i18n.updatepage}"/></legend>                                                                        
+                            </div>
+                            <div class="control-group">                                
+                                <label class="control-label" for="title"><h:outputText value="#{i18n.title}"/></label>                                
+                                <div class="controls">
+                                    <h:inputText id="title"  style="width:280px"
+                                                 value="#{PageUpdateBean.entity.title}" required="true">                                
+                                    </h:inputText>                                  
+                                </div>
+                            </div>    
+                            <div class="control-group">  
+                                <div class="controls">
+                                    <h:message for="title" styleClass="alert alert-error"/>                              
+                                </div>
+                            </div>
+                            <div class="control-group">                                
+                                <label class="control-label" for="content"><h:outputText value="#{i18n.content}"/></label>                                
+                                <div class="controls">
+                                    <p:editor id="content" width="1000" required="true" height="400" value="#{PageUpdateBean.entity.content}"/>                                
+                                </div>
+                            </div>    
+                            <div class="control-group">  
+                                <div class="controls">
+                                    <h:message for="content" styleClass="alert alert-error"/>                              
+                                </div>
+                            </div>
+                            <div class="control-group">                                
+                                <label class="control-label" for="sort"><h:outputText value="#{i18n.sort}"/></label>                                
+                                <div class="controls">
+                                    <h:selectOneMenu id="sort" styleClass="dropdown-toggle" required="true" value="#{PageUpdateBean.entity.sortOrder}">
+                                        <f:selectItem itemLabel="1" itemValue="1"/>
+                                        <f:selectItem itemLabel="2" itemValue="2"/>
+                                        <f:selectItem itemLabel="3" itemValue="3"/>
+                                        <f:selectItem itemLabel="4" itemValue="4"/>
+                                        <f:selectItem itemLabel="5" itemValue="5"/>
+                                        <f:selectItem itemLabel="6" itemValue="6"/>
+                                        <f:selectItem itemLabel="7" itemValue="7"/>
+                                        <f:selectItem itemLabel="8" itemValue="8"/>
+                                        <f:selectItem itemLabel="9" itemValue="9"/>
+                                        <f:selectItem itemLabel="10" itemValue="10"/>
+                                        <f:selectItem itemLabel="11" itemValue="11"/>
+                                        <f:selectItem itemLabel="12" itemValue="12"/>
+                                        <f:selectItem itemLabel="13" itemValue="13"/>
+                                        <f:selectItem itemLabel="14" itemValue="14"/>
+                                        <f:selectItem itemLabel="15" itemValue="15"/>                                        
+                                    </h:selectOneMenu>                                 
+                                </div>
+                            </div>    
+                            <div class="control-group">  
+                                <div class="controls">
+                                    <h:message for="sort" styleClass="alert alert-error"/>                              
+                                </div>
+                            </div>
+                            <div class="control-group">                                
+                                <label class="control-label" for="status"><h:outputText value="#{i18n.status}"/></label>
+                                <div class="controls">
+                                    <h:selectOneMenu id="status" style="width:290px" styleClass="dropdown-toggle" required="true" value="#{PageUpdateBean.entity.status}">
+                                        <f:selectItem itemLabel="#{i18n.notactive}" itemValue="0"/>                           
+                                        <f:selectItem itemLabel="#{i18n.active}" itemValue="1"/>                                        
+                                    </h:selectOneMenu>                                     
+                                </div>
+                            </div>
+                            <div class="control-group">  
+                                <div class="controls">
+                                    <h:message for="status" styleClass="alert alert-error"/>                              
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <!-- Button -->
+                                <div class="controls">
+                                    <h:commandButton styleClass="btn btn-primary btn-large" action="#{PageUpdateBean.update}" value="#{i18n.save}"/>
+                                </div>
+                            </div>      
+                        </fieldset>
+                    </h:form>
+                </p:layoutUnit>               
+                <p:layoutUnit id="right" position="east" size="250" header="#{i18n.navigation}" resizable="true" closable="false" collapsible="true"
+                              style="text-align:left">                   
+                    <ui:include src="page_navigator.xhtml"/>
+                </p:layoutUnit>                              
+            </p:layout>            
+        </h:body>
+    </f:view>
+</html>

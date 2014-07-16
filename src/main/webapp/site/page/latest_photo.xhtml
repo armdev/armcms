@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <ul class="unstyled">
+        <ui:repeat value="#{GalleryListBean.latestGalleryList}" var="list">
+            <li>
+                <h:link outcome="pretty:view-showphoto">        
+                    <f:param name="id" value="#{list.id}"/>   
+                    <f:param name="slug" value="#{list.slug}"/>   
+                    <h5><h:outputText  value="#{list.title}"/></h5>
+                </h:link>   
+            </li>           
+        </ui:repeat>                       
+    </ul>
+    <hr/>
+</ui:composition>

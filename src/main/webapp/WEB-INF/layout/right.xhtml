@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <div>
+        <h4>#{i18n.opinion}</h4>
+        <div>
+            <h:link outcome="pretty:view-news">
+                <f:param name="next" value="#{ArticleOpinionBean.opinionNews.id}"/>   
+                <f:param name="slug" value="#{ArticleOpinionBean.opinionNews.slug}"/>   
+                <i>
+                    <h5><h:outputText escape="false" value="#{ArticleOpinionBean.opinionNews.title}"/></h5>
+                    <h:graphicImage id="latest_article_image_opinion" styleClass="img-polaroid"
+                                    url="/PreviewImage?w=250&amp;fileId=#{ArticleOpinionBean.opinionNews.imageId}"
+                                    width="300px" height="200px" rendered="#{ArticleOpinionBean.opinionNews.imageId != null}"/> 
+                </i>
+            </h:link>   
+            <div>
+                <p><h:outputText escape="false" value="#{ArticleOpinionBean.opinionNews.header}"/></p>
+            </div>
+        </div>
+       <ul class="nav nav-list bs-docs-sidenav">
+            <ui:repeat value="#{ArticleOpinionBean.opinionList}" var="list">
+                <li>
+                    <h:link outcome="pretty:view-news">        
+                        <f:param name="next" value="#{list.id}"/>   
+                        <f:param name="slug" value="#{list.slug}"/>                            
+                        <h5><h:outputText  value="#{list.title}"/></h5>                            
+                    </h:link>      
+                </li>
+            </ui:repeat>
+        </ul>
+    </div>
+    <hr/>    
+    <div class="rail-tease">
+        <h4>#{i18n.ideas}</h4>
+        <div class="story">
+            <h:link outcome="pretty:view-news">
+                <f:param name="next" value="#{ArticleIdeasBean.ideasNews.id}"/>   
+                <f:param name="slug" value="#{ArticleIdeasBean.ideasNews.slug}"/> 
+                <h5><h:outputText value="#{ArticleIdeasBean.ideasNews.title}"/></h5>
+                <i class="figure rel">
+                    <h:graphicImage id="latest_article_image_ideas" styleClass="img-polaroid"
+                                    url="/PreviewImage?w=250&amp;fileId=#{ArticleIdeasBean.ideasNews.imageId}"
+                                    width="400px" height="200px" rendered="#{ArticleIdeasBean.ideasNews.imageId != null}"/>
+
+                </i>                   
+            </h:link>
+            <div>
+                <p><h:outputText escape="false" value="#{ArticleIdeasBean.ideasNews.header}"/></p>
+            </div>                
+        </div>
+        <ul class="nav nav-list bs-docs-sidenav">
+            <ui:repeat value="#{ArticleIdeasBean.ideasList}" var="list">
+                <li>
+                    <h:link outcome="pretty:view-news">        
+                        <f:param name="next" value="#{list.id}"/>   
+                        <f:param name="slug" value="#{list.slug}"/>                            
+                        <h5><h:outputText  value="#{list.title}"/></h5>                            
+                    </h:link>     
+                </li>
+            </ui:repeat>
+        </ul>
+    </div>
+    <hr/>
+</ui:composition>

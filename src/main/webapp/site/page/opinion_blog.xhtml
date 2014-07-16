@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h4>#{i18n.opinion}</h4>
+    <h:link outcome="pretty:view-news">
+        <f:param name="next" value="#{CategoryOpinionContinueBean.opinionNews.id}"/>   
+        <f:param name="slug" value="#{CategoryOpinionContinueBean.opinionNews.slug}"/>
+        <h:graphicImage styleClass="img-polaroid" url="/PreviewImage?w=250&amp;fileId=#{CategoryOpinionContinueBean.opinionNews.imageId}"
+                        width="300px" rendered="#{CategoryOpinionContinueBean.opinionNews.imageId != null}"/>
+        <h5><h:outputText  value="#{CategoryOpinionContinueBean.opinionNews.title}"/></h5>                                    
+    </h:link>               
+    <p><h:outputText escape="false" value="#{ArticleOpinionContinueBean.opinionNews.header}"/></p>
+    <h4>#{i18n.moreheadlines}</h4>
+    <ul class="unstyled">                
+        <ui:repeat value="#{CategoryOpinionContinueBean.opinionList}" var="list">
+            <h:link outcome="pretty:view-news">        
+                <f:param name="next" value="#{list.id}"/>   
+                <f:param name="slug" value="#{list.slug}"/>
+                <li>
+                    <h5><h:outputText  value="#{list.title}"/></h5>
+                </li>  
+            </h:link>    
+        </ui:repeat>  
+    </ul>
+</ui:composition>

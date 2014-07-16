@@ -1,0 +1,25 @@
+LICENSE FOR ARMCMS
+
+ArmCMS absolutely free product. Source code also free.
+You can not sell it as a project or CMS.
+You can not share it and get money for download.
+You can not did changes in the core files.
+
+Any java developer can use it as his own site.
+Any java developer can introduce it to his clients and get paid only for support and extend.
+ArmCMS can be used as personal site and as site for company.
+If company needed support and changes , company must contact with ArmCMS owner or get another developer.
+Any developer who want to do changes or need extend the ArmCMS must be the first contact with ArmCMS owner.
+
+Absolutely free -  changes in the site theme and site frontend part.
+Any bug the first must be reported to the site owner and get back improved version.
+
+
+To get commercial version or for core changes contact also with ArmCMS owner.
+
+LICENSE file could not be deleted from project.
+
+Best Regards,
+ArmCMS owner
+Armen Arzumanyan
+Contact armen.arzumanyan@gmail.com, subject ArmCMS:-

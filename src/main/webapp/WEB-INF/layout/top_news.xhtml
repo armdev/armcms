@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h4><h:outputText  value="#{i18n.ontop}"/></h4>
+    <h:link outcome="pretty:view-news">
+        <h:graphicImage id="top_article_image" url="/PreviewImage?w=250&amp;fileId=#{ArticleTopBean.topNews.imageId}"
+                        width="800px" styleClass="img-polaroid" rendered="#{ArticleTopBean.topNews.imageId != null}"/>
+        <f:param name="next" value="#{ArticleTopBean.topNews.id}"/>   
+        <f:param name="slug" value="#{ArticleTopBean.topNews.slug}"/>
+        <p class="hed-cat">
+        </p>
+        <h5><h:outputText id="top_title" value="#{ArticleTopBean.topNews.title}"/></h5>
+    </h:link>                   
+    <div>
+        <p>
+            <h:outputText id="top_header"  escape="false" value="#{ArticleTopBean.topNews.header}"/>                                              
+        </p>
+    </div>
+    <ul class="nav nav-list bs-docs-sidenav">
+        <ui:repeat value="#{ArticleTopBean.topList}" var="list">
+            <li>
+                <h:link outcome="pretty:view-news">
+                    <f:param name="next" value="#{list.id}"/>   
+                    <f:param name="slug" value="#{list.slug}"/>
+                    <h5><h:outputText  value="#{list.title}"/></h5>
+                </h:link>     
+            </li>
+        </ui:repeat>                     
+    </ul>
+</ui:composition>

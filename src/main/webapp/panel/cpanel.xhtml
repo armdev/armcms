@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>#{i18n.adminpanel}</title>
+             <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">
+                    <h:form>       
+                        <center>
+                            <h1>#{i18n.adminpanel}</h1>
+                            <br/>                           
+                            <h:outputLink target="_blank" value="#{request.contextPath}/site/index.jsf">
+                                <h3><h:outputText value="#{i18n.tosite}"/></h3>
+                            </h:outputLink>      
+                            <h:graphicImage width="250px" value="/resources/img/duke.png"/>
+                        </center>
+
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="right" position="east" size="300" resizable="true" closable="false" 
+                              collapsible="true" header="#{i18n.navigation}" minSize="200">
+                    <ui:include src="navigator.xhtml"/>
+                </p:layoutUnit> 
+                <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="false" collapsible="true">  
+                    <p:dock>  
+                        <p:menuitem  icon="/resources/img/04.png" title="News list" url="/articles/articleslist.jsf"/>                              
+                        <p:menuitem  icon="/resources/img/03.png" url="/articles/authorslist.jsf"/>  
+                        <p:menuitem  icon="/resources/img/02.png" url="/theme/themes.jsf"/>  
+                        <p:menuitem  icon="/resources/img/01.png" url="/users/userlist.jsf"/>     
+                        <p:menuitem  icon="/resources/img/05.png" url="/video/videolist.jsf"/> 
+                        <p:menuitem  icon="/resources/img/06.png" url="/gallery/galleries.jsf"/>                        
+                    </p:dock> 
+                </p:layoutUnit>
+            </p:layout>            
+        </h:body>
+    </f:view>
+</html>

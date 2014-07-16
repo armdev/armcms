@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <div>
+        <h4>#{i18n.opinion}</h4>
+        <div>
+            <h:link outcome="pretty:view-news">
+                <f:param name="next" value="#{CategoryOpinionBean.opinionNews.id}"/>   
+                <f:param name="slug" value="#{CategoryOpinionBean.opinionNews.slug}"/>   
+                <i>
+                    <h5><h:outputText escape="false" value="#{CategoryOpinionBean.opinionNews.title}"/></h5>
+                    <h:graphicImage id="latest_article_image_opinion" styleClass="img-polaroid"
+                                    url="/PreviewImage?w=250&amp;fileId=#{CategoryOpinionBean.opinionNews.imageId}"
+                                    width="500px" height="200px" rendered="#{CategoryOpinionBean.opinionNews.imageId != null}"/> 
+                </i>
+            </h:link>   
+            <div>
+                <p><h:outputText escape="false" value="#{CategoryOpinionBean.opinionNews.header}"/></p>
+            </div>
+        </div>
+        <ul class="unstyled">
+            <ui:repeat value="#{CategoryOpinionBean.opinionList}" var="list">
+                <li>
+                    <h:link outcome="pretty:view-news">        
+                        <f:param name="next" value="#{list.id}"/>   
+                        <f:param name="slug" value="#{list.slug}"/>                            
+                        <h5><h:outputText  value="#{list.title}"/></h5>                            
+                    </h:link>      
+                </li>
+            </ui:repeat>
+        </ul>
+    </div>
+    <hr/>
+    <div class="rail-tease">
+        <h4>#{i18n.ideas}</h4>
+        <div class="story">
+            <h:link outcome="pretty:view-news">
+                <f:param name="next" value="#{CategoryIdeasBean.ideasNews.id}"/>   
+                <f:param name="slug" value="#{CategoryIdeasBean.ideasNews.slug}"/> 
+                <h5><h:outputText value="#{CategoryIdeasBean.ideasNews.title}"/></h5>
+                <i class="figure rel">
+                    <h:graphicImage id="latest_article_image_ideas" styleClass="img-polaroid"
+                                    url="/PreviewImage?w=250&amp;fileId=#{CategoryIdeasBean.ideasNews.imageId}"
+                                    width="400px" height="200px" rendered="#{CategoryIdeasBean.ideasNews.imageId != null}"/>
+
+                </i>                   
+            </h:link>
+            <div>
+                <p><h:outputText escape="false" value="#{CategoryIdeasBean.ideasNews.header}"/></p>
+            </div>                
+        </div>
+        <ul class="unstyled">
+            <ui:repeat value="#{CategoryIdeasBean.ideasList}" var="list">
+                <li>
+                    <h:link outcome="pretty:view-news">        
+                        <f:param name="next" value="#{list.id}"/>   
+                        <f:param name="slug" value="#{list.slug}"/>                            
+                        <h5><h:outputText  value="#{list.title}"/></h5>                            
+                    </h:link>     
+                </li>
+            </ui:repeat>
+        </ul>
+    </div>
+    <hr/>
+</ui:composition>

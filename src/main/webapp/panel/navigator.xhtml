@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"    
+      xmlns:t="http://myfaces.apache.org/tomahawk">   
+
+    <ui:composition>       
+        <h:form>
+            <p:accordionPanel activeIndex="0">
+                <p:tab title="#{i18n.articlesNavigator}">                  
+                    <h:outputLink  value="#{facesContext.externalContext.request.contextPath}/articles/articleslist.jsf">
+                        <h:outputText value="#{i18n.articleListTitle}"/>
+                    </h:outputLink>                     
+                </p:tab>  
+                <p:tab title="#{i18n.staticpages}">                  
+                    <h:outputLink  value="#{request.contextPath}/static/pages.jsf">
+                        <h:outputText value="#{i18n.allpages}"/>
+                    </h:outputLink>                     
+                </p:tab>  
+                <p:tab title="#{i18n.users}">                  
+                    <h:outputLink  value="#{request.contextPath}/users/userlist.jsf">
+                        <h:outputText value="#{i18n.userList}"/>
+                    </h:outputLink>                     
+                </p:tab>                 
+                <p:tab title="#{i18n.videos}">                  
+                    <h:outputLink  value="#{request.contextPath}/video/videolist.jsf">
+                        <h:outputText value="#{i18n.videolist}"/>
+                    </h:outputLink>                    
+                </p:tab>
+                <p:tab title="#{i18n.galleries}">                  
+                    <h:outputLink  value="#{request.contextPath}/gallery/galleries.jsf">
+                        <h:outputText value="#{i18n.gallerylist}"/>
+                    </h:outputLink>                    
+                </p:tab>  
+                <p:tab title="#{i18n.adsystem}">                  
+                    <h:outputLink  value="#{request.contextPath}/adsystem/adlist.jsf">
+                        <h:outputText value="#{i18n.adsystem}"/>
+                    </h:outputLink>                    
+                </p:tab>   
+                <p:tab title="#{i18n.siteheaders}">                  
+                    <h:outputLink  value="#{request.contextPath}/configs/headers.jsf">
+                        <h:outputText value="#{i18n.headerlist}"/>
+                    </h:outputLink>                    
+                </p:tab>   
+                <p:tab title="#{i18n.themes}">                  
+                    <h:outputLink  value="#{request.contextPath}/theme/themes.jsf">
+                        <h:outputText value="#{i18n.themelist}"/>
+                    </h:outputLink>                    
+                </p:tab>   
+                <p:tab title="#{i18n.settings}"> 
+                    <h:outputLink  value="#{request.contextPath}/configs/general.jsf">
+                        <h:outputText value="#{i18n.generalsettings}"/>
+                    </h:outputLink> 
+                    <br/>
+                    <h:outputLink  value="#{request.contextPath}/configs/updatepermalinks.jsf">
+                        <h:outputText value="#{i18n.updatepermalinks}"/>
+                    </h:outputLink> 
+                    <br/>
+                    <h:outputLink  value="#{request.contextPath}/configs/mail.jsf">
+                        <h:outputText value="#{i18n.mailconfigs}"/>
+                    </h:outputLink> 
+                    <br/>
+                    <h:outputLink  value="#{request.contextPath}/mail/send.jsf">
+                        <h:outputText value="#{i18n.sendmail}"/>
+                    </h:outputLink>  
+                </p:tab>                     
+            </p:accordionPanel>
+        </h:form>
+    </ui:composition>    
+</html>

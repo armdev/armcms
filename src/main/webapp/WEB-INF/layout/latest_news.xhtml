@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <hgroup>
+        <h2>Latest News in the world</h2>        
+    </hgroup>    
+    <h:link outcome="pretty:view-news">                        
+        <f:param name="next" value="#{ArticleLatestNewsBean.latestNews.id}"/>   
+        <f:param name="slug" value="#{ArticleLatestNewsBean.latestNews.slug}"/> 
+        <hgroup>
+            <h2><h:outputText styleClass="title" value="#{ArticleLatestNewsBean.latestNews.title}"/></h2>
+        </hgroup>
+    </h:link> 
+    <h:link outcome="pretty:view-news"> 
+        <h:graphicImage id="latest_article_image" styleClass="img-polaroid" url="/PreviewImage?w=250&amp;fileId=#{ArticleLatestNewsBean.latestNews.imageId}"
+                        width="500px" rendered="#{ArticleLatestNewsBean.latestNews.imageId != null}"/> 
+        <f:param name="next" value="#{ArticleLatestNewsBean.latestNews.id}"/>   
+        <f:param name="slug" value="#{ArticleLatestNewsBean.latestNews.slug}"/>   
+    </h:link>      
+    <hr/>
+    <div>       
+        <p>
+            <h:outputText id="latest_header"  escape="false" value="#{ArticleLatestNewsBean.latestNews.header}"/>                                              
+        </p>
+    </div>                   
+    <ul class="nav nav-list bs-docs-sidenav">
+        <ui:repeat value="#{ArticleLatestNewsBean.latestList}" var="list">
+            <li>
+                <h:link outcome="pretty:view-news">        
+                    <f:param name="next" value="#{list.id}"/>   
+                    <f:param name="slug" value="#{list.slug}"/>
+                    <h5><h:outputText  value="#{list.title}"/></h5>
+                </h:link>   
+            </li>
+        </ui:repeat>                       
+    </ul>
+    <hr/>
+    <h:link outcome="pretty:view-news">
+        <f:param name="next" value="#{ArticleLatestNewsBean.oneNews.id}"/>   
+        <f:param name="slug" value="#{ArticleLatestNewsBean.oneNews.slug}"/>
+        <h5><strong><h:outputText value="#{ArticleLatestNewsBean.oneNews.title}"/></strong></h5>                       
+        <i>
+            <h:graphicImage id="latest_one_article_image" styleClass="img-polaroid" url="/PreviewImage?w=250&amp;fileId=#{ArticleLatestNewsBean.oneNews.imageId}"
+                            width="200px" rendered="#{ArticleLatestNewsBean.oneNews.imageId != null}"/>  
+        </i>
+    </h:link>
+    <h4>More headlines Alina</h4>  
+    <ul class="nav nav-list bs-docs-sidenav">
+        <ui:repeat value="#{ArticleLatestNewsBean.moreList}" var="list">
+            <li>
+                <h:link outcome="pretty:view-news">                                        
+                    <f:param name="next" value="#{list.id}"/>   
+                    <f:param name="slug" value="#{list.slug}"/>
+                    <h5><h:outputText  value="#{list.title}" rendered="#{list.title != null}"/></h5>
+                </h:link>                            
+            </li>                 
+        </ui:repeat>  
+    </ul>
+    <hr/>
+    <h4>Special Section</h4>
+    <ui:repeat value="#{ArticleSpecialBean.specialList}" var="list">
+        <ul class="thumbnails">
+            <li class="span12">
+                <h:link class="thumbnail" outcome="pretty:view-news">
+                    <h:graphicImage  url="/PreviewImage?w=250&amp;fileId=#{list.imageId}"
+                                     width="200px" rendered="#{list.imageId != null}"/>
+                    <f:param name="next" value="#{list.id}"/>   
+                    <f:param name="slug" value="#{list.slug}"/>                               
+                    <h5><h:outputText  value="#{list.title}"/></h5>
+                </h:link>       
+            </li>
+        </ul>                       
+    </ui:repeat> 
+    <hr/>
+
+    <p>Ads here this is very long ads</p>
+    <p>Ads here this is very long ads</p>
+    <p>Ads here this is very long ads</p>
+    <p>Ads here this is very long ads</p>  
+    <hr/>
+</ui:composition>

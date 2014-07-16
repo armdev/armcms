@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <div class="navbar-inner">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#{request.contextPath}/site/index.jsf">#{i18n.home}</a>
+        <div class="nav-collapse">
+            <ul class="nav">
+                <ui:repeat var="list"  value="#{ArticleMenuFacade.menuList}">
+                    <li class="active">
+                        <h:link outcome="pretty:view-category">        
+                            <f:param name="categoryId" value="#{list.id}"/>   
+                            <f:param name="name" value="#{list.name}"/>                           
+                            <h:outputText  value="#{list.name}"/>
+                        </h:link>    
+                    </li>
+                </ui:repeat>
+                <li>
+                    <h:link outcome="pretty:view-videopage">                                             
+                        <h:outputText  value="#{i18n.videonews}"/>
+                    </h:link>
+                </li>
+                <li>
+                    <h:link outcome="pretty:view-photopage">                                             
+                        <h:outputText  value="#{i18n.galleries}"/>
+                    </h:link>
+                </li>      
+                <li>
+                    <h:outputLink   value="#{request.contextPath}/site/all.jsf">
+                        <h:outputText  value="#{i18n.allnews}"/>
+                    </h:outputLink>
+                </li>    
+                <li>
+                    <h:outputLink   value="#{request.contextPath}/site/search.jsf">
+                        <h:outputText  value="#{i18n.search}"/>
+                    </h:outputLink>
+                </li>     
+            </ul>
+        </div>   
+
+        <h:outputLink styleClass="brand"  rendered="#{SessionController.userContext == null}" value="#{request.contextPath}/auth.jsf">
+            <h:outputText  value="#{i18n.sin}"/>
+        </h:outputLink>
+        <h:outputLink styleClass="brand"  rendered="#{SessionController.userContext == null}" value="#{request.contextPath}/register.jsf">
+            <h:outputText  value="#{i18n.sup}"/>
+        </h:outputLink>
+        <h:form>    
+            <h:commandLink id="logout" styleClass="brand"  rendered="#{SessionController.userContext != null}"
+                           action="#{UserLogout.doLogout}"
+                           value="#{i18n.logout}" immediate="true"/> 
+
+            <h:outputLink styleClass="brand"  rendered="#{SessionController.userContext != null and SessionController.userRole == '1639654122'}" value="#{request.contextPath}/panel/cpanel.jsf">
+                <h:outputText  value="#{i18n.toadmin}"/>
+            </h:outputLink>
+        </h:form>
+    </div> 
+    <hr/>
+</ui:composition>

@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>#{i18n.updatetheme}</title>
+            <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="/panel/menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">                  
+                    <h:form id="updte_theme" styleClass="form-horizontal">
+                        <fieldset>
+                            <div class="legend">  
+                                <legend class=""><h:outputText  value="#{i18n.updatetheme}"/></legend>                                                                        
+                            </div>
+                            <div class="control-group">                                
+                                <label class="control-label" for="name"><h:outputText value="#{i18n.name}"/></label>                                
+                                <div class="controls">
+                                    <h:inputText id="name"  style="width:280px"
+                                                 value="#{ThemeUpdateBean.entity.name}" required="true">                                
+                                    </h:inputText>                                  
+                                </div>
+                            </div>    
+                            <div class="control-group">  
+                                <div class="controls">
+                                    <h:message for="name" styleClass="alert alert-error"/>                              
+                                </div>
+                            </div>
+                            <div class="control-group">                                
+                                <label class="control-label" for="status"><h:outputText value="#{i18n.status}"/></label>
+                                <div class="controls">
+                                    <h:selectOneMenu id="status" styleClass="dropdown-toggle" 
+                                                     style="width:290px" required="true" 
+                                                     value="#{ThemeUpdateBean.entity.status}">
+                                        <f:selectItem itemLabel="#{i18n.notactive}" itemValue="0"/>                           
+                                        <f:selectItem itemLabel="#{i18n.active}" itemValue="1"/>                                        
+                                    </h:selectOneMenu>                                     
+                                </div>
+                            </div>
+                            <div class="control-group">  
+                                <div class="controls">
+                                    <h:message for="status" styleClass="alert alert-error"/>                              
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <!-- Button -->
+                                <div class="controls">
+                                    <h:commandButton styleClass="btn btn-primary btn-large" action="#{ThemeUpdateBean.update}" value="#{i18n.save}"/>
+                                </div>
+                            </div>      
+                        </fieldset>
+                    </h:form>
+                </p:layoutUnit>               
+                <p:layoutUnit id="right" position="east" size="250" header="#{i18n.navigation}" resizable="true" closable="false" collapsible="true"
+                              style="text-align:left">                   
+                    <ui:include src="theme_navigator.xhtml"/>
+                </p:layoutUnit>                              
+            </p:layout>            
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+        <h:head>
+            <ui:include src="news_headers.xhtml"/>
+        </h:head>  
+        <div class="container-fluid">
+            <header>
+                <ui:include src="/WEB-INF/layout/logo.xhtml"/>                    
+            </header>   
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                <ui:include src="/WEB-INF/layout/menu.xhtml"/>     
+            </nav>
+            <section class="row-fluid">
+                <aside class="span5" style="border: 1px">
+                    <br/>
+                    <h:outputLink value="#">
+                        <h:graphicImage id="top_article_image" url="/PreviewImage?w=250&amp;fileId=#{fullNewsBean.articleEntity.imageId}"
+                                        width="600px" styleClass="img-polaroid" rendered="#{fullNewsBean.articleEntity.imageId != null}"/>                                      
+                    </h:outputLink>
+                    <h5><h:outputText id="author" value="#{i18n.author}  #{fullNewsBean.articleEntity.authorName}"/></h5>
+                    <h6 class="subhed"><h:outputText id="dateposted" value="#{fullNewsBean.articleEntity.datePosted}"/></h6>
+                    <h6 class="subhed"><h:outputText id="pageView" value="#{i18n.viewed} #{fullNewsBean.articleEntity.viewCount} #{i18n.times}"/></h6>
+                    <hr/>
+                    <h6 class="subhed"><h:outputText value="#{i18n.mostpopular}"/></h6>
+                    <div id="accordion1">
+                        <ui:repeat value="#{LeftNavigatorBean.showTopLinks}" var="list">
+                            <div class="group" style="width: 400px">                               
+                                <h:link outcome="pretty:view-news">   
+                                    <f:param name="next" value="#{list.id}"/>   
+                                    <f:param name="slug" value="#{list.slug}"/>   
+                                    <h3><h:outputText value="#{list.title}"/></h3>
+                                </h:link>          
+                                <h6 class="subhed"><h:outputText value="#{i18n.viewed} #{list.viewCount} #{i18n.times}"/></h6>
+                                <h:graphicImage url="/PreviewImage?w=250&amp;fileId=#{list.imageId}"
+                                                width="150px" styleClass="img-polaroid" rendered="#{list.imageId != null}"/>
+                                <br/>
+                                <div>
+                                    <p><h:outputText escape="false" value="#{list.header}"/></p>
+                                    <h:link outcome="pretty:view-news" styleClass="pagination" value="Read more">   
+                                        <f:param name="next" value="#{list.id}"/>   
+                                        <f:param name="slug" value="#{list.slug}"/>                                            
+                                    </h:link>                                            
+                                </div>
+                            </div> 
+                        </ui:repeat>
+                    </div>
+                </aside>               
+                <article class="span6">
+                    <h:outputLink  value="#">
+                        <h3><h:outputText id="top_title" value="#{fullNewsBean.articleEntity.title}"/></h3>
+                    </h:outputLink>                              
+                    <p>
+                        <h:outputText id="video" escape="false" value="#{fullNewsBean.articleEntity.videoCode}"/> 
+                    </p>
+                    <p>
+                        <h:outputText id="header" escape="false" value="#{fullNewsBean.articleEntity.header}"/>
+                    </p>                   
+
+                    <p>
+                        <h:outputText id="content" escape="false" value="#{fullNewsBean.articleEntity.content}"/>
+                    </p>
+                    <p>
+                        <h:outputText id="adscode" escape="false" value="#{fullNewsBean.articleEntity.googleAds}"/> 
+                    </p>
+                    <hr/>
+                    <ul class="nav nav-list bs-docs-sidenav">
+                        <ui:repeat value="#{ArticleTopBean.topList}" var="list">
+                            <li>
+                                <h:link outcome="pretty:view-news">
+                                    <f:param name="next" value="#{list.id}"/>   
+                                    <f:param name="slug" value="#{list.slug}"/>
+                                    <h5><h:outputText  value="#{list.title}"/></h5>
+                                </h:link>     
+                            </li>
+                        </ui:repeat>                     
+                    </ul>  
+                    <hr/>
+                    <t:newspaperTable id="dataOld"
+                                      newspaperColumns="1"
+                                      styleClass="standardTable"
+                                      headerClass="standardTable_Header"
+                                      footerClass="standardTable_Header"
+                                      rowClasses="standardTable_Row1,standardTable_Row2"
+                                      columnClasses="standardTable_Column,standardTable_ColumnCentered"
+                                      var="list"
+                                      value="#{LeftNavigatorBean.showRandomNews}">                                         
+                        <h:column>
+                            <f:facet name="header">
+
+                            </f:facet>
+                            <h:link outcome="pretty:view-news">        
+                                <f:param name="next" value="#{list.id}"/>   
+                                <f:param name="slug" value="#{list.slug}"/>              
+                                <h5><h:outputText  value="#{list.title}"/></h5>                
+                            </h:link>  
+                            <h5><h:outputText  escape="false" value="#{list.header}"/></h5>
+                            <h:graphicImage url="/PreviewImage?w=250&amp;fileId=#{list.imageId}"
+                                            width="150px" styleClass="img-polaroid" rendered="#{list.imageId != null}"/> 
+                        </h:column>                        
+
+                    </t:newspaperTable>
+                    <hr/>
+                    <ul class="nav nav-list bs-docs-sidenav">             
+                        <ui:repeat value="#{ArticleLatestContinueBean.moreList}" var="list">
+                            <li>
+                                <h:link outcome="pretty:view-news">        
+                                    <f:param name="next" value="#{list.id}"/>   
+                                    <f:param name="slug" value="#{list.slug}"/>              
+                                    <h5><h:outputText  value="#{list.title}"/></h5>                
+                                </h:link>       
+                            </li>  
+                        </ui:repeat>  
+                    </ul>
+                    <hr/>
+                    <div id="accordion1">
+                        <ui:repeat value="#{LeftNavigatorBean.showRandomNews}" var="list">
+                            <div class="group" style="width: 400px">
+                                <h:link outcome="pretty:view-news">   
+                                    <f:param name="next" value="#{list.id}"/>   
+                                    <f:param name="slug" value="#{list.slug}"/>   
+                                    <h3><h:outputText value="#{list.title}"/></h3>
+                                </h:link>      
+                                <h:graphicImage url="/PreviewImage?w=250&amp;fileId=#{list.imageId}"
+                                                width="150px" styleClass="img-polaroid" rendered="#{list.imageId != null}"/>
+                                <br/>
+                                <div>
+                                    <p><h:outputText escape="false" value="#{list.header}"/></p>
+                                    <h:link outcome="pretty:view-news" styleClass="pagination" value="Read more">   
+                                        <f:param name="next" value="#{list.id}"/>   
+                                        <f:param name="slug" value="#{list.slug}"/>                                            
+                                    </h:link>                                            
+                                </div>
+                            </div> 
+                        </ui:repeat>
+                    </div>
+                </article>                                              
+            </section>
+        </div>
+        <footer>
+            <ui:include src="/WEB-INF/layout/footer.xhtml"/>      
+        </footer>
+    </body>
+</html>

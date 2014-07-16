@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <meta charset="utf-8"/>
+    <title>      
+        <h:outputText value="#{GeneralSettingsFacade.settings.siteTitle}"/>
+        <h:outputText value=" | "/>
+        <h:outputText value="#{fullNewsBean.articleEntity.metaTitle}"/>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <ui:include src="/WEB-INF/layout/insert_runtime.xhtml"/>
+    <ui:include src="/WEB-INF/layout/insert_css.xhtml"/>
+    <meta name="document-state" content="#{fullNewsBean.articleEntity.metaDocumentState}"/>   
+    <meta property="og:locale" content="#{fullNewsBean.articleEntity.metaLocale}"/>             
+    <meta property="og:title" content="#{GeneralSettingsFacade.settings.siteTitle} #{fullNewsBean.articleEntity.metaTitle}"/>   
+    <meta property="og:url" content="#{fullNewsBean.articleEntity.permalink}"/>             
+    <meta property="og:description" content="#{fullNewsBean.articleEntity.metaDescription}"/>  
+    <h:panelGroup rendered="#{fullNewsBean.articleEntity.imageId != null || fullNewsBean.articleEntity.imageId > 0}">        
+        <meta property="og:image" content="/PreviewImage?w=250&amp;fileId=#{fullNewsBean.articleEntity.imageId}"/>
+    </h:panelGroup> 
+    <meta property="og:site_name" content="#{fullNewsBean.articleEntity.metaSiteName}"/> 
+    <meta property="og:type" content="#{fullNewsBean.articleEntity.metaType}"/>
+</ui:composition>

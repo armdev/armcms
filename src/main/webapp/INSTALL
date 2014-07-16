@@ -1,0 +1,29 @@
+Easy and fast way
+----------------------------------------------
+ArmCMS based on maven
+Install NetBeans IDE 7
+Install Maven/set maven home, repo home...
+configure maven from NetBeans
+install mongodb
+copy database dump to the c:\mongo\bin
+start mongo db with command mongod
+for mongodb UI client you can find rocko-mongo, just download run and login with default admin/admin, to
+see your database.
+again go to c:\mongo\bin from another console
+copy db dump to the this folder
+run command fro restore mongodump
+mongorestore -d  armcms  c:\mongo\bin\dump\armcms
+#mongodump -d  armcms -o dump
+From NetBeans clean deploy and run the project with Apache Tomcat 7(JDK6/7).
+No need password/login for mongodb
+Login as admin with user
+admin@gmail.com
+pass: armcms
+Enjoy
+any question - to armen.arzumanyan@gmail.com
+or 
+do comment in http://armcms.wordpress.com/ blog
+
+
+
+

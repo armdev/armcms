@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="/panel/menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">
+                    <h:form id="update_article" enctype="multipart/form-data" styleClass="form-horizontal">  
+                        <p:growl/>
+                        <fieldset>
+                            <p:panel toggleTitle="#{i18n.articlemeta}" closable="false" header="#{i18n.articlemeta}" styleClass="form-horizontal" collapsed="true"  toggleable="true">
+                                <div class="legend">  
+                                    <legend class=""><h:outputText  value="#{i18n.articlemeta}"/></legend>                                                                        
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="permalink"><h:outputText value="#{i18n.permalink}"/></label>                                
+                                    <div class="controls">
+                                        <h:outputText id="permalink" value="#{UpdateArticleBean.articleEntity.permalink}"/>                                                           
+                                    </div>
+                                </div>    
+                                <div class="control-group">                                
+                                    <label class="control-label" for="categoryId"><h:outputText value="#{i18n.categories}"/></label>                                
+                                    <div class="controls">
+                                        <h:selectOneMenu id="categoryId" required="true" value="#{UpdateArticleBean.articleEntity.categoryId}">
+                                            <f:selectItems value="#{UpdateArticleBean.categoriesList}"/>                            
+                                        </h:selectOneMenu>                            
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="categoryId" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="metaDocumentStateArticle"><h:outputText value="#{i18n.metaDocumentStateArticle}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="metaDocumentStateArticle"  style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.metaDocumentState}" required="true">                                
+                                        </h:inputText>                       
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="metaDocumentStateArticle" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="metaLocaleArticle"><h:outputText value="#{i18n.metaLocaleArticle}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="metaLocaleArticle"  style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.metaLocale}" required="true">                                
+                                        </h:inputText>                  
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="metaLocaleArticle" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="metaTitleArticle"><h:outputText value="#{i18n.metaTitleArticle}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="metaTitleArticle" style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.metaTitle}" required="true">                                
+                                        </h:inputText>                  
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="metaLocaleArticle" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="metaDescriptionArticle"><h:outputText value="#{i18n.metaDescriptionArticle}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="metaDescriptionArticle"  style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.metaDescription}" required="true">                                
+                                        </h:inputText>                  
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="metaDescriptionArticle" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="metaSiteNameArticle"><h:outputText value="#{i18n.metaSiteNameArticle}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="metaSiteNameArticle"  style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.metaSiteName}" required="true">                                
+                                        </h:inputText>                  
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="metaSiteNameArticle" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="metaTypeArticle"><h:outputText value="#{i18n.metaTypeArticle}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="metaTypeArticle" style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.metaType}" required="true">                                
+                                        </h:inputText>                  
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="metaTypeArticle" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                            </p:panel>
+                            <p:panel toggleTitle="#{i18n.articlecontent}" closable="false" header="#{i18n.articlecontent}" styleClass="form-horizontal" toggleable="true">
+                                <div class="control-group">                                
+                                 <label class="control-label" for="title"><h:outputText value="#{i18n.title}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="title" style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.title}" required="true">                                
+                                        </h:inputText>                  
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="title" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                 <div class="control-group">                                
+                                  <label class="control-label" for="updatedate"><h:outputText value="#{i18n.updatedate}"/></label>                                
+                                    <div class="controls">
+                                        <h:selectBooleanCheckbox id="updatedate" value="#{UpdateArticleBean.articleEntity.update}"/>
+                                    </div>
+                                </div>  
+                                <div class="control-group">                                
+                                    <label class="control-label" for="articleSlug"><h:outputText value="#{i18n.articleSlug}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="articleSlug" style="width: 600px"
+                                                     value="#{UpdateArticleBean.articleEntity.slug}" required="true">
+                                            <f:validateLength maximum="100"/>
+                                        </h:inputText>                  
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="articleSlug" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="articleHeader"><h:outputText value="#{i18n.articleHeader}"/></label>                                
+                                    <div class="controls">
+                                        <p:editor id="articleHeader" width="1000" height="400" value="#{UpdateArticleBean.articleEntity.header}"/>               
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="articleHeader" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="contentArticle"><h:outputText value="#{i18n.contentArticle}"/></label>                                
+                                    <div class="controls">
+                                        <p:editor id="contentArticle" width="1000" height="400" value="#{UpdateArticleBean.articleEntity.content}"/>               
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="articleHeader" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="status"><h:outputText value="#{i18n.status}"/></label>                                
+                                    <div class="controls">
+                                        <h:selectOneMenu id="status" required="true" value="#{UpdateArticleBean.articleEntity.status}">
+                                            <f:selectItem itemLabel="#{i18n.draft}" itemValue="7"/>
+                                            <f:selectItem itemLabel="#{i18n.publishArticle}" itemValue="6"/>                           
+                                        </h:selectOneMenu>              
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="status" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="newstype"><h:outputText value="#{i18n.newstype}"/></label>                                
+                                    <div class="controls">
+                                        <h:selectOneMenu id="newstype" required="true" value="#{UpdateArticleBean.articleEntity.articleTopStatus}">
+                                            <f:selectItem itemLabel="#{i18n.latestnews}" itemValue="12"/>
+                                            <f:selectItem itemLabel="#{i18n.articleregular}" itemValue="11"/>
+                                            <f:selectItem itemLabel="#{i18n.articletop}" itemValue="10"/>                                            
+                                            <f:selectItem itemLabel="#{i18n.specialblock}" itemValue="13"/>
+                                            <f:selectItem itemLabel="#{i18n.opinionblock}" itemValue="14"/>                                            
+                                            <f:selectItem itemLabel="#{i18n.ideasblock}" itemValue="15"/>                                            
+                                        </h:selectOneMenu>              
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="newstype" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="articleAuthor"><h:outputText value="#{i18n.articleAuthor}"/></label>                                
+                                    <div class="controls">
+                                        <h:selectOneMenu id="articleAuthor" required="true" value="#{UpdateArticleBean.articleEntity.authorId}">
+                                            <f:selectItems value="#{UpdateArticleBean.authorsList}"/>                       
+                                        </h:selectOneMenu>           
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="articleAuthor" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="attacheFile"><h:outputText value="#{i18n.attache}"/></label>                                
+                                    <div class="controls">
+                                        <t:inputFileUpload id="attacheFile"  value="#{UpdateArticleBean.upFile}" required="false"
+                                                           accept="image/*"  size="20" storage="file"/>     
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="attacheFile" styleClass="alert alert-error"/> 
+                                        <h:outputText rendered="#{UpdateArticleBean.fileTooBig == true}"
+                                                      value="#{i18n.filetoobig}" style="color:red"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="show"></label>                                
+                                    <div class="controls">
+                                        <p:graphicImage id="show" url="/PreviewImage?w=250&amp;fileId=#{UpdateArticleBean.articleEntity.imageId}"
+                                                        width="300px" rendered="#{UpdateArticleBean.articleEntity.imageId != null}"/>
+                                    </div>
+                                </div>   
+                            </p:panel>
+                            <p:panel toggleTitle="#{i18n.articlevideo}" closable="false" header="#{i18n.articlevideo}" collapsed="true" styleClass="form-horizontal" toggleable="true">
+                                <div class="control-group">  
+                                    <label class="control-label" for="videoCode"><h:outputText value="#{i18n.embededCode}"/></label>    
+                                    <div class="controls">
+                                        <h:inputTextarea id="videoCode"  cols="20" rows="10"  style="width:280px; height: 200px" 
+                                                         value="#{UpdateArticleBean.articleEntity.videoCode}" required="false">                                    
+                                        </h:inputTextarea> 
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <h:outputText escape="false" value="#{UpdateArticleBean.articleEntity.videoCode}"/>
+                                    </div>
+                                </div>
+                            </p:panel>     
+                            <p:panel toggleTitle="#{i18n.articleAds}" closable="false" header="#{i18n.articleAds}" collapsed="true" styleClass="form-horizontal" toggleable="true">
+                                <div class="control-group">  
+                                    <label class="control-label" for="adsembededCode"><h:outputText value="#{i18n.embededCode}"/></label> 
+                                    <div class="controls">
+                                        <h:inputTextarea id="adsembededCode"  cols="20" rows="10"  style="width:280px; height: 200px" 
+                                                         value="#{UpdateArticleBean.articleEntity.googleAds}" required="false">                                    
+                                        </h:inputTextarea> 
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <h:outputText escape="false" value="#{UpdateArticleBean.articleEntity.googleAds}"/>
+                                    </div>
+                                </div>
+                            </p:panel>    
+                            <div class="control-group">
+                                <!-- Button -->
+                                <div class="controls">
+                                    <h:commandButton styleClass="btn btn-primary btn-large" action="#{UpdateArticleBean.updateArticle}" value="#{i18n.save}"/>
+                                    <h:outputText value=" "/>
+                                    <h:commandButton styleClass="btn btn-primary btn-large" action="articleslist" immediate="true" value="#{i18n.cancel}"/>
+
+                                    <h:outputText value=" "/>
+                                    <h:commandButton styleClass="btn btn-primary btn-large" action="#{UpdateArticleBean.delete}" onclick="if (!confirm('#{i18n.delConfirm}')){return false;}" immediate="true" value="#{i18n.delete}"/>
+                                </div>
+                            </div>
+                        </fieldset>                      
+                    </h:form>
+                </p:layoutUnit>               
+                <p:layoutUnit id="left" position="east" size="250" header="#{i18n.navigation}" resizable="true" closable="false" collapsible="true" collapsed="true"
+                              style="text-align:left">                   
+                    <ui:include src="article_navigator.xhtml"/>
+                </p:layoutUnit>                      
+            </p:layout>       
+
+        </h:body>
+    </f:view>
+</html>

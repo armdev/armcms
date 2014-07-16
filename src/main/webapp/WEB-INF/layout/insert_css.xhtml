@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"> 
+
+<!--    <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"/> <!--<![endif]-->
+    <style>
+        /* IE has layout issues when sorting (see #5413) */
+        .group { zoom: 1 }
+    </style>
+    <script>
+        $(function() {
+            $( "#accordion" )
+            .accordion({
+                header: "> div > h3"
+            })
+            .sortable({
+                axis: "y",
+                handle: "h3",
+                stop: function( event, ui ) {
+                    // IE doesn't register the blur when sorting
+                    // so trigger focusout handlers to remove .ui-state-focus
+                    ui.item.children( "h3" ).triggerHandler( "focusout" );
+                }
+            });
+        });
+    </script>
+    <link href="#{request.contextPath}/resources/css/#{ThemeLoaderFacade.currentTheme.name}" rel="stylesheet" type="text/css"/>
+    <h:panelGroup rendered="#{ThemeLoaderFacade.currentTheme.name == null}">
+        <link href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </h:panelGroup>
+    <!--[if !IE 7]><style type="text/css">#sf-wrapper {display:table;height:100%}</style><![endif] -->
+</ui:composition>

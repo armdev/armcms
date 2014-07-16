@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view>     
+        <h:head>
+            <title>#{i18n.userList}</title>
+             <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="/panel/menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">                   
+                    <h:form>                        
+                        <p:dataTable var="list" value="#{UserListBean.listDataModel}" rendered="#{not empty UserListBean.listDataModel}"
+                                     paginator="true" rows="40" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}
+                                     {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 
+                                     selection="#{UserListBean.userEntity}" lazy="true" liveScroll="false"
+                                     rowsPerPageTemplate="5,10,15" selectionMode="single">                      
+
+                            <p:column headerText="#{i18n.fullname}">  
+                                <h:outputText value="#{list.firstname} #{list.lastname}"/>  
+                            </p:column>                                
+                            <p:column headerText="#{i18n.email}">
+                                <h:outputLink value="sendmail.jsf">
+                                    <h:outputText value="#{list.email}"/>      
+                                    <f:param value="#{list.id}" name="next"/>
+                                </h:outputLink>
+                            </p:column>
+                            <p:column headerText="#{i18n.registeredDate}">  
+                                <h:outputText value="#{list.registeredDate}"/>  
+                            </p:column>
+                            <p:column headerText="#{i18n.status}">                              
+                                <h:outputText value="#{i18n.notactive}" rendered="#{list.status == 17}"/>  
+                                <h:outputText value="#{i18n.active}" rendered="#{list.status == 16}"/>  
+                            </p:column>
+                            <p:column headerText="#{i18n.userRole}">  
+                                <h:outputText value="#{i18n.regularuser}" rendered="#{list.userRole == 1}"/>  
+                                <h:outputText value="#{i18n.siteAdmin}" rendered="#{list.userRole == 1639654122}"/>  
+                                <h:outputText value="#{i18n.siteMember}" rendered="#{list.userRole == 2}"/>  
+                            </p:column>
+                            <p:column headerText="#{i18n.actions}"> 
+                                 <h:outputLink title="#{i18n.edit}" value="#{request.contextPath}/users/updateuser.jsf">
+                                   <f:param name="userId" value="#{list.id}"/>
+                                   <h:graphicImage value="/resources/img/edit.png"/>  
+                                </h:outputLink>                              
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>               
+                <p:layoutUnit id="right" position="east" size="250" header="#{i18n.navigation}" resizable="true" closable="false" collapsible="true"
+                              style="text-align:left">                   
+                    <ui:include src="user_navigator.xhtml"/>
+                </p:layoutUnit>                              
+            </p:layout>            
+        </h:body>
+    </f:view>
+</html>

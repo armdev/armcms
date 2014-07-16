@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h4><h:outputText value="#{i18n.latestNews}"/></h4>
+    <h:link outcome="pretty:view-news">                        
+        <f:param name="next" value="#{CategoryLatestNewsBean.latestNews.id}"/>   
+        <f:param name="slug" value="#{CategoryLatestNewsBean.latestNews.slug}"/>   
+        <h5><h:outputText  value="#{CategoryLatestNewsBean.latestNews.title}"/></h5>
+    </h:link> 
+    <h:link outcome="pretty:view-news"> 
+        <h:graphicImage id="latest_article_image" styleClass="img-polaroid" url="/PreviewImage?w=250&amp;fileId=#{CategoryLatestNewsBean.latestNews.imageId}"
+                        width="400px" rendered="#{CategoryLatestNewsBean.latestNews.imageId != null}"/> 
+        <f:param name="next" value="#{CategoryLatestNewsBean.latestNews.id}"/>   
+        <f:param name="slug" value="#{CategoryLatestNewsBean.latestNews.slug}"/>   
+    </h:link>                
+    <div>
+        <p>
+            <h:outputText id="latest_header"  escape="false" value="#{CategoryLatestNewsBean.latestNews.header}"/>                                              
+        </p>
+    </div>                   
+    <ul class="unstyled">
+        <ui:repeat value="#{CategoryLatestNewsBean.latestList}" var="list">
+            <li>
+                <h:link outcome="pretty:view-news">        
+                    <f:param name="next" value="#{list.id}"/>   
+                    <f:param name="slug" value="#{list.slug}"/>
+                    <h5><h:outputText  value="#{list.title}"/></h5>
+                </h:link>   
+            </li>
+        </ui:repeat>                       
+    </ul>
+    <hr/>
+    <h:link outcome="pretty:view-news">
+        <f:param name="next" value="#{CategoryLatestNewsBean.oneNews.id}"/>   
+        <f:param name="slug" value="#{CategoryLatestNewsBean.oneNews.slug}"/>
+        <h5><strong><h:outputText value="#{CategoryLatestNewsBean.oneNews.title}"/></strong></h5>                       
+        <i>
+            <h:graphicImage id="latest_one_article_image" styleClass="img-polaroid" url="/PreviewImage?w=250&amp;fileId=#{CategoryLatestNewsBean.oneNews.imageId}"
+                            width="300px" rendered="#{CategoryLatestNewsBean.oneNews.imageId != null}"/>  
+        </i>
+    </h:link>
+    <h4>#{i18n.moreheadlines}</h4>                   
+    <ui:repeat value="#{CategoryLatestNewsBean.moreList}" var="list">
+        <div>
+            <h:link outcome="pretty:view-news">                                        
+                <f:param name="next" value="#{list.id}"/>   
+                <f:param name="slug" value="#{list.slug}"/>
+                <h5><h:outputText  value="#{list.title}" rendered="#{list.title != null}"/></h5>
+            </h:link>                            
+        </div>                          
+    </ui:repeat>                   
+    <hr/>
+    <h4>#{i18n.specialsection}</h4>
+    <ui:repeat value="#{CategorySpecialBean.specialList}" var="list">
+        <ul class="thumbnails">
+            <li class="span12">
+                <h:link class="thumbnail" outcome="pretty:view-news">
+                    <h:graphicImage  url="/PreviewImage?w=250&amp;fileId=#{list.imageId}"
+                                     rendered="#{list.imageId != null}"/>
+                    <f:param name="next" value="#{list.id}"/>   
+                    <f:param name="slug" value="#{list.slug}"/>                               
+                    <h5><h:outputText  value="#{list.title}"/></h5>
+                </h:link>       
+            </li>
+        </ul>                       
+    </ui:repeat> 
+    <hr/>  
+</ui:composition>

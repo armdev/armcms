@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <ui:remove>do not delete header</ui:remove>
+            <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="/panel/menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">                                    
+                    <h:form id="mail_configs">  
+                        <p:growl/>
+                        <p:panel toggleTitle="#{i18n.mailconfigs}" closable="false" header="#{i18n.mailconfigs}" styleClass="form-horizontal" toggleable="true">
+                            <fieldset>                               
+                                <div class="legend">  
+                                    <legend class=""><h:outputText  value="#{i18n.mailconfigs}"/></legend>                                                                        
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="mailhost"><h:outputText value="#{i18n.mailhost}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="mailhost"  size="40" required="true" value="#{MailConfigBean.mailerEntity.host}">
+                                            <f:validateLength  maximum="100"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="mailhost" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="socketPort"><h:outputText value="#{i18n.socketPort}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="socketPort"  size="40" required="true" value="#{MailConfigBean.mailerEntity.socketPort}">
+                                            <f:validateLength  maximum="10"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="socketPort" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="smtpPort"><h:outputText value="#{i18n.smtpPort}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="smtpPort"  size="40" required="true" value="#{MailConfigBean.mailerEntity.smtpPort}">
+                                            <f:validateLength  maximum="10"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="smtpPort" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="fromAddress"><h:outputText value="#{i18n.fromAddress}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="fromAddress"  size="40" required="true" value="#{MailConfigBean.mailerEntity.fromAddress}">
+                                            <f:validateLength  maximum="100"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="fromAddress" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="emailforauth"><h:outputText value="#{i18n.emailforauth}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="emailforauth"  size="40" required="true" value="#{MailConfigBean.mailerEntity.email}">
+                                            <f:validateLength  maximum="100"/>     
+                                             <f:validator validatorId="EmailValidator"/>
+                                        </h:inputText>                             
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="emailforauth" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="authpasswd"><h:outputText value="#{i18n.authpasswd}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="authpasswd"  size="40" required="true" value="#{MailConfigBean.mailerEntity.passwd}">
+                                            <f:validateLength  maximum="100"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="authpasswd" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <!-- Button -->
+                                    <div class="controls">
+                                        <h:commandButton styleClass="btn btn-primary btn-large" action="#{MailConfigBean.updateConfigs}" value="#{i18n.save}"/>                                        
+                                    </div>
+                                </div>
+                            </fieldset>                                
+                        </p:panel>
+                    </h:form>  
+                </p:layoutUnit>               
+                <p:layoutUnit id="right" position="east" size="250" header="#{i18n.navigation}" resizable="true" closable="false" collapsible="true"
+                              style="text-align:left">                   
+                    <ui:include src="/panel/navigator.xhtml"/>
+                </p:layoutUnit>                              
+            </p:layout>            
+        </h:body>
+    </f:view>
+</html>

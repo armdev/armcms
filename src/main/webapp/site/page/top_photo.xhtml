@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:link outcome="pretty:view-showphoto">       
+        <f:param name="id" value="#{GalleryListBean.topGallery.id}"/>   
+        <f:param name="slug" value="#{GalleryListBean.topGallery.slug}"/>
+        <h5><h:outputText id="top_title_photo" value="#{GalleryListBean.topGallery.title}"/></h5>
+    </h:link>                   
+    <div>
+        <p>
+            <ul id="myGallery">
+                <ui:repeat value="#{GalleryListBean.topGallery.images}" var="image">
+                    <li>
+                        <p:graphicImage id="show" url="/PreviewImage?w=250&amp;fileId=#{image}"
+                                        width="300px" rendered="#{image != null}"/> 
+                    </li>
+                </ui:repeat>    
+            </ul>
+        </p>
+    </div>
+</ui:composition>

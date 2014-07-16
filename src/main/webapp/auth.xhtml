@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <f:view>
+        <body>
+            <h:head>
+                <ui:include src="/WEB-INF/layout/main_headers.xhtml"/>
+            </h:head>     
+            <div class="container-fluid">
+                <header>
+                    <ui:include src="/WEB-INF/layout/logo.xhtml"/>                    
+                </header>   
+            </div>
+            <div class="container-fluid">
+                <nav class="navbar navbar-inverse">
+                    <ui:include src="/WEB-INF/layout/menu.xhtml"/>     
+                </nav>              
+                <div class="container">               
+                    <div class="span9">
+                        <h:form id="loginRandomForm" rendered="#{SessionController.userContext == null}">
+                            <p:growl/>                      
+                            <fieldset>
+                                <div class="legend">  
+                                    <legend><h:outputText  value="#{i18n.login}"/></legend>                                                                        
+                                </div>                          
+                                <div class="control-group">                                
+                                    <label class="control-label" for="email"><h:outputText value="#{i18n.email}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText id="email"  value="#{UserLogin.email}" required="true">                            
+                                            <f:validateLength  maximum="100"/>
+                                            <f:validator validatorId="EmailValidator"/>
+                                        </h:inputText>
+                                    </div>
+                                </div>                           
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="email" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="password"><h:outputText value="#{i18n.password}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputSecret id="password" value="#{UserLogin.password}" required="true">                              
+                                            <f:validateLength maximum="20"/>
+                                        </h:inputSecret>
+                                    </div>
+                                </div>                           
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="password" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="inputValue"><h:outputText value="#{i18n.entercode}"/> |
+                                        <h:outputText value="#{UserLogin.randomValue}"/>                                      
+                                    </label>                                
+                                    <div class="controls">
+                                        <h:inputText id="inputValue" converterMessage="#{i18n.mustbenumber}"
+                                                     validatorMessage="#{i18n.mustbenumber}" 
+                                                     value="#{UserLogin.inputValue}"
+                                                     required="true">
+                                            <f:validateLongRange/>                         
+                                        </h:inputText>
+                                    </div>
+                                </div>                           
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="inputValue" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <!-- Button -->
+                                    <div class="controls">
+                                        <h:commandButton id="login" styleClass="btn btn-primary btn-large" action="#{UserLogin.loginUser}" value="#{i18n.login}"/>   
+                                        <h:outputText value=" "/>
+                                        <h:commandButton id="forgot" styleClass="btn btn-primary btn-large" action="forgot" value="#{i18n.forgot}" immediate="true"/>   
+                                    </div>
+                                </div>
+                            </fieldset>                       
+                        </h:form>           
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <ui:include src="/WEB-INF/layout/footer.xhtml"/>      
+            </footer>
+        </body>
+    </f:view>
+</html>

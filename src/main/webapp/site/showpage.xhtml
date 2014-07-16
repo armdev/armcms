@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+        <h:head>
+            <ui:include src="/WEB-INF/layout/main_headers.xhtml"/>
+        </h:head>
+        <div class="container-fluid">
+            <header>
+                <ui:include src="/WEB-INF/layout/logo.xhtml"/>                    
+            </header>   
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                <ui:include src="/WEB-INF/layout/menu.xhtml"/>                
+            </nav>
+            <section class="row-fluid">             
+                <aside class="span12">                      
+                    <h4><h:outputText id="page_title" value="#{StaticPagesViewBean.entity.title}"/></h4>                                
+                    <div>
+                        <p>
+                            <h:outputText id="pagecontent" escape="false" value="#{StaticPagesViewBean.entity.content}"/>                                              
+                        </p>
+                    </div>
+                </aside>                              
+            </section>
+            <footer>
+                <ui:include src="/WEB-INF/layout/footer.xhtml"/>      
+            </footer>
+        </div>        
+    </body>
+</html>

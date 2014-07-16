@@ -1,0 +1,5 @@
+ArmCMS is CMS like system for online newspapers and magazines.
+Based on JSF2, Twitter bootstrap and MongoDB.
+High performance, integrated admin tool, smart, a lot of modules, easy to extend and support.
+
+ArmCMS generally for java developers who believe what JSF2 to the best.

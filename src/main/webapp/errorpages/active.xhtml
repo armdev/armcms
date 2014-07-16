@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+        <head>
+            <ui:include src="/WEB-INF/layout/main_headers.xhtml"/>
+        </head>     
+        <div class="container-fluid">
+            <header>
+                <ui:include src="/WEB-INF/layout/logo.xhtml"/>                    
+            </header>   
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                <ui:include src="/WEB-INF/layout/menu.xhtml"/>     
+            </nav>              
+            <div class="container">               
+                <div class="span9">
+                    <center>
+                        <div class="message_block">
+                            <div class="author">                                          
+                                <div class="message_title">
+                                    <div class="message_title_txt">
+                                        #{i18n.passreminder}
+                                    </div>
+                                </div>
+                                <div class="messege_txt">
+                                   
+                                  
+                                </div>                            
+                            </div> 
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <footer class="span2 offset10">
+
+        </footer>    
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">     
+        <h:head>
+            <title>#{i18n.headerlist}</title>
+            <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="/panel/menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">
+                    <h:form id="adsystem_list">                      
+                        <p:dataTable var="list" value="#{HeaderBean.headersList}"  paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15">    
+                            <p:column headerText="#{i18n.title}">  
+                                <h:outputText value="#{list.title}"/>  
+                            </p:column>                                       
+                            <p:column headerText="#{i18n.actions}">  
+                                <h:outputLink title="#{i18n.edit}" value="#{request.contextPath}/configs/updateheader.jsf">
+                                    <f:param name="next" value="#{list.id}"/>
+                                    <h:graphicImage value="/resources/img/edit.png"/>  
+                                </h:outputLink>                                    
+                                <h:outputText value=" | "/>   
+                                <h:commandLink title="#{i18n.delete}" onclick="if (!confirm('#{i18n.delConfirm}')){return false;}"
+                                               action="#{HeaderBean.remove(list.id)}">  
+                                    <h:graphicImage value="/resources/img/cross.png"/> 
+                                </h:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>               
+                <p:layoutUnit id="right" position="east" size="250" header="#{i18n.navigation}" resizable="true" closable="false" collapsible="true"
+                              style="text-align:left">                   
+                    <ui:include src="header_navigator.xhtml"/>
+                </p:layoutUnit>                              
+            </p:layout>            
+        </h:body>
+    </f:view>
+</html>

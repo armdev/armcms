@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+        <h:head>
+            <ui:include src="/WEB-INF/layout/main_headers.xhtml"/>
+        </h:head>
+        <div class="container-fluid">
+            <header>
+                <ui:include src="/WEB-INF/layout/logo.xhtml"/>                    
+            </header>   
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                <ui:include src="/WEB-INF/layout/menu.xhtml"/>                
+            </nav>
+            <section class="row-fluid">
+                <p:growl/>
+                <aside class="span3">                      
+                    <h5><h:outputText id="video_title" value="#{showVideoBean.entity.title}"/></h5>                                
+                    <div>
+                        <p>
+                            <h:outputText id="video_url" escape="false" value="#{showVideoBean.entity.url}"/>                                              
+                        </p>
+                    </div>
+                    <ul class="unstyled">
+                        <ui:repeat value="#{VideoListBean.videoList}" var="list">
+                            <li>
+                                <h:link outcome="pretty:view-showvideo">
+                                    <f:param name="videoId" value="#{list.id}"/>   
+                                    <f:param name="videoslug" value="#{list.slug}"/>
+                                    <h5><h:outputText  value="#{list.title}"/></h5>
+                                </h:link>     
+                            </li>
+                        </ui:repeat>                     
+                    </ul>                 
+                </aside>               
+                <aside class="span3 offset3">
+                    <ui:include src="/site/page/latest_video.xhtml"/>
+                </aside>
+            </section>
+            <footer>
+                <ui:include src="/WEB-INF/layout/footer.xhtml"/>      
+            </footer>
+        </div>        
+    </body>
+</html>

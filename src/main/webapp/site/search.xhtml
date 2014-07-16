@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+        <h:head>
+            <ui:include src="/WEB-INF/layout/main_headers.xhtml"/>
+        </h:head>
+        <div class="container-fluid">
+            <header>
+                <ui:include src="/WEB-INF/layout/logo.xhtml"/>                    
+            </header>   
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                <ui:include src="/WEB-INF/layout/menu.xhtml"/>                
+            </nav>
+            <h:form prependId="false"> 
+                <section class="row-fluid">             
+                    <aside class="span10">   
+                        <ul class="unstyled">
+                            <h:inputText id="search" style="width:800px" value="#{SearchBean.searchKey}">
+                                <f:validateLength minimum="2"/>
+                            </h:inputText>
+                            <br/>
+                            <h:commandButton styleClass="btn btn-primary btn-large" action="#{SearchBean.search}" value="#{i18n.search}"/>
+                            <br/>
+                            <ui:repeat value="#{SearchBean.resultList}" var="list">                             
+                                    <li>
+                                        <h:link outcome="pretty:view-category">        
+                                            <f:param name="categoryId" value="#{list.categoryId}"/>   
+                                            <f:param name="name" value="#{list.categoryName}"/>                           
+                                            <h3><h:outputText  value="#{list.categoryName}"/></h3>
+                                        </h:link>                                       
+                                        <h:link outcome="pretty:view-news">
+                                            <f:param name="next" value="#{list.id}"/>   
+                                            <f:param name="slug" value="#{list.slug}"/>
+                                            <h4><h:outputText  value="#{list.title}"/></h4>
+                                        </h:link>   
+                                        <p><h5><h:outputText escape="false" value="#{list.header}"/></h5></p>
+                                        <h:graphicImage url="/PreviewImage?w=250&amp;fileId=#{list.imageId}"
+                                                        width="250px" styleClass="img-polaroid" rendered="#{list.imageId != null}"/>
+                                    </li>   
+                                <hr/>
+                            </ui:repeat>                     
+
+                        </ul>
+                        
+                    </aside>                              
+                </section>
+            </h:form>
+            <footer>
+                <ui:include src="/WEB-INF/layout/footer.xhtml"/>      
+            </footer>
+        </div>        
+    </body>
+</html>

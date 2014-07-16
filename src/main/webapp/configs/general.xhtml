@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <ui:remove>do not delete header</ui:remove>
+            <ui:include src="/panel/main_headers.xhtml"/>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" header="Top" resizable="true" closable="false" collapsible="true">
+                    <h:form>       
+                        <ui:include src="/panel/menu.xhtml"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">                                    
+                    <h:form id="mail_configs">  
+                        <p:growl/>
+                        <p:panel toggleTitle="#{i18n.generalsettings}" closable="false" header="#{i18n.generalsettings}" styleClass="form-horizontal" toggleable="true">
+                            <fieldset>                               
+                                <div class="legend">  
+                                    <legend class=""><h:outputText  value="#{i18n.generalsettings}"/></legend>                                                                        
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="sitetitle"><h:outputText value="#{i18n.sitetitle}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="sitetitle"  size="40" required="true" value="#{GeneralConfigBean.generalSettingsEntity.siteTitle}">
+                                            <f:validateLength  maximum="100"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="sitetitle" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="tagLine"><h:outputText value="#{i18n.tagline}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="tagLine"  size="40" required="true" value="#{GeneralConfigBean.generalSettingsEntity.tagLine}">
+                                            <f:validateLength  maximum="100"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>                                    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="tagLine" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="siteaddress"><h:outputText value="#{i18n.siteaddress}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="siteaddress"  size="40" required="true" value="#{GeneralConfigBean.generalSettingsEntity.siteAddress}">
+                                            <f:validateLength  maximum="100"/>                                   
+                                        </h:inputText>                             
+                                    </div>
+                                </div>                                    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="siteaddress" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">                                
+                                    <label class="control-label" for="siteowneremail"><h:outputText value="#{i18n.siteowneremail}"/></label>                                
+                                    <div class="controls">
+                                        <h:inputText  id="siteowneremail"  size="40" required="true" value="#{GeneralConfigBean.generalSettingsEntity.ownerEmail}">
+                                            <f:validateLength  maximum="100"/> 
+                                            <f:validator validatorId="EmailValidator"/>
+                                        </h:inputText>                             
+                                    </div>
+                                </div>                                    
+                                <div class="control-group">  
+                                    <div class="controls">
+                                        <h:message for="siteowneremail" styleClass="alert alert-error"/>                              
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <!-- Button -->
+                                    <div class="controls">
+                                        <h:commandButton styleClass="btn btn-primary btn-large" action="#{GeneralConfigBean.updateConfigs}" value="#{i18n.save}"/>                                        
+                                    </div>
+                                </div>
+                            </fieldset>                                
+                        </p:panel>
+                    </h:form>  
+                </p:layoutUnit>               
+                <p:layoutUnit id="right" position="east" size="250" header="#{i18n.navigation}" resizable="true" closable="false" collapsible="true"
+                              style="text-align:left">                   
+                    <ui:include src="/panel/navigator.xhtml"/>
+                </p:layoutUnit>                              
+            </p:layout>            
+        </h:body>
+    </f:view>
+</html>

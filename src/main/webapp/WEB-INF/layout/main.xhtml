@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <f:view>
+        <h:head>
+            <ui:insert name="headers"></ui:insert> 
+        </h:head>
+        <body>
+            <div class="container-fluid">
+                <header>
+                    <ui:insert name="logo"></ui:insert>                   
+                </header>   
+            </div>
+            <div class="container-fluid">
+                <nav class="navbar navbar-inverse">
+                    <ui:insert name="menu"></ui:insert>                  
+                </nav>
+                <section class="row-fluid">
+                    <aside class="span5" style="border: 1px">
+                        <ui:insert name="top_news"></ui:insert>                    
+                        <hr/>
+                        <aside class="span5">
+                            <ui:insert name="top_blog"></ui:insert> 
+                        </aside>
+                        <aside class="span6">
+                            <ui:insert name="latest_blog"></ui:insert> 
+                        </aside>                   
+                        <aside class="span5">
+                            <ui:insert name="opinion_blog"></ui:insert> 
+                        </aside>
+                        <aside class="span5">
+                            <ui:insert name="regular_blog"></ui:insert> 
+                        </aside>                     
+                    </aside>               
+                    <article class="span3">
+                        <ui:insert name="latest_news"></ui:insert> 
+                    </article>
+                    <article class="span3">
+                        <ui:insert name="right"></ui:insert> 
+                        <ui:include src="/WEB-INF/layout/rightads.xhtml"/>
+                    </article>
+                    <article class="span4">
+                        <ui:insert name="special"></ui:insert> 
+                    </article>                         
+                </section>                        
+                <footer>
+                    <ui:insert name="footer"></ui:insert> 
+                    <ui:include src="/WEB-INF/layout/footer.xhtml"/>      
+                </footer>
+            </div>
+        </body>
+    </f:view>
+</html>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+        <h:head>
+            <ui:include src="/WEB-INF/layout/main_headers.xhtml"/>
+            <ui:include src="/WEB-INF/layout/gallery_meta.xhtml"/>            
+        </h:head>
+        <div class="container-fluid">
+            <header>
+                <ui:include src="/WEB-INF/layout/logo.xhtml"/>                    
+            </header>   
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                <ui:include src="/WEB-INF/layout/menu.xhtml"/>                
+            </nav>
+            <section class="row-fluid">               
+                <aside class="span3">                      
+                    <h5><h:outputText id="video_title" value="#{ShowGalleryBean.entity.title}"/></h5>                                
+                    <div>
+                        <ul id="myGallery">
+                            <ui:repeat value="#{ShowGalleryBean.entity.images}" var="image">
+                                <li>
+                                    <p:graphicImage id="show" url="/PreviewImage?w=250&amp;fileId=#{image}"
+                                                    width="300px" rendered="#{image != null}"/> 
+                                </li>
+                            </ui:repeat>    
+                        </ul>                    
+                    </div>
+                    <ui:include src="/site/page/latest_photo.xhtml"/>      
+                </aside>               
+
+            </section>
+             <footer>
+                <ui:include src="/WEB-INF/layout/footer.xhtml"/>      
+            </footer>
+        </div>        
+    </body>
+</html>

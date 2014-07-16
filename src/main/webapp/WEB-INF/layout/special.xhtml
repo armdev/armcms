@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h4>#{i18n.specialsection}</h4>
+    <ul class="nav nav-list bs-docs-sidenav">     
+    <ui:repeat value="#{ArticleSpecialBean.specialList}" var="list">
+        <li>
+            <h:link outcome="pretty:view-news">
+                <f:param name="next" value="#{list.id}"/>   
+                <f:param name="slug" value="#{list.slug}"/>                               
+                <h5><h:outputText  value="#{list.title}"/></h5>
+            </h:link>                                                                                                      
+            </li>        
+    </ui:repeat>
+    </ul>
+</ui:composition>

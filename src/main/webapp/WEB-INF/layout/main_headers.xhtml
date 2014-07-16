@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>       
+        <h:outputText value="#{GeneralSettingsFacade.settings.siteTitle}"/>
+        |
+        <h:outputText value="#{GeneralSettingsFacade.settings.tagLine}"/>
+    </title>
+    <ui:include src="/WEB-INF/layout/insert_runtime.xhtml"/>
+    <ui:include src="/WEB-INF/layout/insert_css.xhtml"/>  
+    <meta name="document-state" content="Dynamic"/>   
+    <meta property="og:locale" content="en_EN"/>             
+    <meta property="og:title" content="#{GeneralSettingsFacade.settings.siteTitle}"/>   
+    <meta property="og:url" content="#{GeneralSettingsFacade.settings.siteAddress}"/>             
+    <meta property="og:description" content="#{GeneralSettingsFacade.settings.tagLine}"/>     
+    <meta property="og:site_name" content="#{GeneralSettingsFacade.settings.siteTitle}"/> 
+    <meta property="og:type" content="article"/>
+
+</ui:composition>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <!--    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>-->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>    
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>  
+    <context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>bootstrap</param-value>  
+    </context-param>              
+    <filter>
+        <filter-name>Character Encoding Filter</filter-name>
+        <filter-class>frontend.web.beans.handlers.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Character Encoding Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    <context-param>
+        <param-name>com.sun.faces.numberOfViewsInSession</param-name>
+        <param-value>8</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.numberOfLogicalViews</param-name>
+        <param-value>8</param-value>
+    </context-param>   
+    <context-param>
+        <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.disableVersionTracking</param-name>
+        <param-value>true</param-value>
+    </context-param>  
+    <context-param>
+        <param-name>com.sun.faces.responseBufferSize</param-name>
+        <param-value>500000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.clientStateWriteBufferSize</param-name>
+        <param-value>32500</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.face.serializeServerState</param-name>
+        <param-value>false</param-value>
+    </context-param>   
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <!-- Facelets development mode (false in production, true for development) -->
+    <context-param>
+        <param-name>facelets.DEVELOPMENT</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <!-- Facelets refresh period (-1 in production, 2 for development) -->
+    <context-param>
+        <param-name>facelets.REFRESH_PERIOD</param-name>
+        <param-value>1</param-value>
+    </context-param>
+    <!-- improves performance -->
+    <context-param>
+        <param-name>facelets.BUFFER_SIZE</param-name>
+        <param-value>500000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>facelets.SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param> 
+    <context-param>
+        <param-name>com.ocpsoft.pretty.DEVELOPMENT</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>PreviewImage</servlet-name>
+        <servlet-class>frontend.web.listeners.PreviewImage</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>ActivateAccount</servlet-name>
+        <servlet-class>backend.facades.ActivateAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>backend.facades.ForgotPassword</servlet-class>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>PreviewImage</servlet-name>
+        <url-pattern>/PreviewImage</url-pattern>
+    </servlet-mapping> 
+     <servlet-mapping>
+        <servlet-name>ActivateAccount</servlet-name>
+        <url-pattern>/ActivateAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/ForgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping> 
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping> 
+    <filter>
+        <filter-name>Pretty Filter</filter-name>
+        <filter-class>com.ocpsoft.pretty.PrettyFilter</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter-mapping> 
+        <filter-name>Pretty Filter</filter-name> 
+        <url-pattern>/*</url-pattern> 
+        <dispatcher>FORWARD</dispatcher> 
+        <dispatcher>REQUEST</dispatcher> 
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>extensionsFilter</filter-name>
+        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+        <init-param>
+            <description>Set the size limit for uploaded files.
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+                1g - 1 GB
+            </description>
+            <param-name>uploadMaxFileSize</param-name>
+            <param-value>100000m</param-value>
+        </init-param>
+        <init-param>
+            <description>Set the threshold size - files below this limit are stored
+                in memory, files above this limit are stored on disk.
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+                1g - 1 GB
+            </description>
+            <param-name>uploadThresholdSize</param-name>
+            <param-value>10000000k</param-value>
+        </init-param>
+    </filter>   
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>*.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>/faces/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    <session-config>
+        <session-timeout>
+            120
+        </session-timeout>
+    </session-config>     
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.crypto.BadPaddingException</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.faces.FacesException</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.NullPointerException</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>com.sun.facelets.FaceletException</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>   
+     <error-page>
+        <exception-type>java.lang.NumberFormatException</exception-type>
+       <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+     <error-page>
+        <exception-type>javax.faces.convert.ConverterException</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>com.ocpsoft.pretty.PrettyException</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.el.PropertyNotFoundException</exception-type>
+         <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/errorpages/viewexpire.jsp</location>
+    </error-page>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>No access</web-resource-name>
+            <url-pattern>*.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>     
+    <welcome-file-list>
+        <welcome-file>forward.jsp</welcome-file>
+    </welcome-file-list>  
+</web-app>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+ 
+    <div class="navbar-inner">     
+        <div class="nav-collapse">
+            <ul class="unstyled">
+                <li>
+                     <h:link target="_blank" outcome="pretty:view-rss-feed">                                                            
+                            <h:outputText  value="#{i18n.rss}"/>
+                     </h:link>                     
+                </li>
+                <ui:repeat var="list"  value="#{StaticPagesLoaderBean.pagesList}">
+                    <li class="active">
+                        <h:link outcome="pretty:view-page">        
+                            <f:param name="next" value="#{list.id}"/>   
+                            <f:param name="title" value="#{list.title}"/>                           
+                            <h:outputText  value="#{list.title}"/>
+                        </h:link>    
+                    </li>
+                </ui:repeat>   
+                
+            </ul>
+        </div>       
+    </div> 
+    <hr/>
+</ui:composition>
